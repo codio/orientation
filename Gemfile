@@ -30,6 +30,7 @@ gem 'bugsnag'
 gem 'slack-notifier'
 gem 'friendly_id'
 gem 'dotenv-rails'
+gem 'octokit'
 
 group :development do
   gem 'better_errors'
