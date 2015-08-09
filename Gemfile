@@ -33,6 +33,7 @@ gem 'slack-notifier'
 gem 'friendly_id'
 gem 'dotenv-rails'
 gem 'octokit'
+gem 'rollbar', '~> 2.1.1'
 
 group :development do
   gem 'better_errors'
