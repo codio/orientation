@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    origin = { origin: session.delete(:return_to) }.to_query
-    redirect_to("/auth/#{ENV['AUTH_MECHANISIM']}?#{origin}")
+    redirect_to "/auth/#{ENV['AUTH_MECHANISIM']}"
   end
 
   def create
@@ -17,9 +16,7 @@ class SessionsController < ApplicationController
     user = User.find_or_create_from_omniauth(auth_hash)
     if user.valid?
       session[:user_id] = user.id
-      flash[:notice] = "Signed in!"
-      # OmniAuth automatically saves the HTTP_REFERER when you begin the auth process
-      redirect_to  request.env['omniauth.origin'] || root_url
+      redirect_to root_url, notice: "Signed in!"
     else
       flash[:error] = "You need a #{ENV.fetch('ORIENTATION_DOMAIN')} account to sign in."
       redirect_to root_url
